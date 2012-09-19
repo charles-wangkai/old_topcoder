@@ -5,27 +5,39 @@
 // @include     http://community.topcoder.com/tc?module=ProblemArchive*
 // @version     1
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js
+// @grant       GM_xmlhttpRequest
 // ==/UserScript==
 
 $(document).ready(function() {
-	var markSolvedProblem = function($problemName) {
-		var url = 'http://goalboytopcoder.googlecode.com/svn/trunk/' + $problemName.html().trim() + '.java';
-		GM_xmlhttpRequest({
-			method: 'GET',
-			url: url,
-			onload: function(resp) {
-				if (resp.status === 200) {
-					$problemName.css('background-color', 'green');
-				}
-			}
-		});
-	};
-	
-	var $problemNames = $('a.statText').filter(function() {
-		return $(this).attr('href').indexOf('/stat?c=problem_statement&pm=') >= 0;
-	});
-	
-	$.each($problemNames, function(index, value) {
-		markSolvedProblem($(value));
-	});
+  var MODIFIED_PROBLEMS = [
+    'DitherCounter',    // ImageDithering
+    'Yahtzee',          // YahtzeeScore
+    'DivDigits',        // DivisorDigits
+    'MarginCalculator', // ProfitCalculator
+  ];
+
+  var markSolvedProblem = function($problemName) {
+    var name = $problemName.html().trim();
+    var url = 'http://goalboytopcoder.googlecode.com/svn/trunk/' + name + '.java';
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: url,
+      onload: function(resp) {
+        if (resp.status === 200) {
+          $problemName.parents("tr:first").css('background-color', 'green');
+        }
+        else if (MODIFIED_PROBLEMS.indexOf(name) >= 0) {
+          $problemName.parents("tr:first").css('background-color', 'cyan');
+        }
+      }
+    });
+  };
+  
+  var $problemNames = $('a.statText').filter(function() {
+    return $(this).attr('href').indexOf('/stat?c=problem_statement&pm=') >= 0;
+  });
+  
+  $.each($problemNames, function(index, value) {
+    markSolvedProblem($(value));
+  });
 });
