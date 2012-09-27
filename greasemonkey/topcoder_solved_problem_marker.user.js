@@ -15,6 +15,10 @@ $(document).ready(function() {
     'DivDigits',        // DivisorDigits
     'MarginCalculator', // ProfitCalculator
   ];
+  
+  var MISSING_PROBLEMS = [
+    'CricketScores',
+  ];
 
   var markSolvedProblem = function($problemName) {
     var name = $problemName.html().trim();
@@ -29,6 +33,9 @@ $(document).ready(function() {
         else if (MODIFIED_PROBLEMS.indexOf(name) >= 0) {
           $problemName.parents("tr:first").css('background-color', 'cyan');
         }
+        else if (MISSING_PROBLEMS.indexOf(name) >= 0) {
+          $problemName.parents("tr:first").css('background-color', 'gray');
+        } 
       }
     });
   };
