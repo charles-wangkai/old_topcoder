@@ -4,16 +4,14 @@ public class ParameterSubstitution {
 	}
 
 	String substitute(String code, String params[], int sequence) {
-		final char DUMMY = '@';
 		if (sequence == 0) {
 			return code;
 		}
-		String parts[] = (code + DUMMY).split("\\$" + sequence);
+		String parts[] = code.split("\\$" + sequence, -1);
 		for (int i = 0; i < parts.length; i++) {
 			parts[i] = substitute(parts[i], params, sequence - 1);
 		}
-		String result = join(parts, params[sequence - 1]);
-		return result.substring(0, result.length() - 1);
+		return join(parts, params[sequence - 1]);
 	}
 
 	String join(String parts[], String middle) {
