@@ -18,6 +18,7 @@ $(document).ready(function() {
   
   var MISSING_PROBLEMS = [
     'CricketScores',
+    'DriveFailures',
   ];
 
   var markSolvedProblem = function($problemName) {
