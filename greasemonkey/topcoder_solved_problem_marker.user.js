@@ -23,7 +23,7 @@ $(document).ready(function() {
 
   var markSolvedProblem = function($problemName) {
     var name = $problemName.html().trim();
-    var url = 'https://goalboytopcoder.googlecode.com/git-history/HEAD/' + name + '.java';
+    var url = 'https://raw.githubusercontent.com/charles-wangkai/topcoder/HEAD/' + name + '.java';
     GM_xmlhttpRequest({
       method: 'GET',
       url: url,
