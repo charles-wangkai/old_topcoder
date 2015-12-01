@@ -2,7 +2,7 @@
 // @name        topcoder solved problem marker
 // @namespace   topcoder
 // @description mark solved problems in green
-// @include     http://community.topcoder.com/tc?module=ProblemArchive*
+// @include     https://community.topcoder.com/tc?module=ProblemArchive*
 // @version     1
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js
 // @grant       GM_xmlhttpRequest
